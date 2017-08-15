@@ -6,6 +6,15 @@ import org.squeryl.PrimitiveTypeMode._
 
 
 trait SelectActiveModelTest extends ActiveModelTest {
+  test("find all") {
+    var mainChannel: Option[Channel] = None
+
+    Multitenancy.currentTenant.withValue(mainTenant.tenantId) {
+      mainChannel = Some(new Channel("main").create())
+
+      assert(Channel.all.size == 5)
+    }
+  }
 
   test("find model") {
     val secondTenantId = "aaa"

@@ -2,14 +2,14 @@ package com.tierline.scala.activemodel
 
 import com.tierline.scala.activemodel.singletenant.ActiveModelSessionFactory
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSuite}
-import org.squeryl.Session
+import org.squeryl.{Session, SessionFactory}
 import org.squeryl.PrimitiveTypeMode._
-
+import com.tierline.scala.activemodel.multitenant.MultitenancyActiveModelSchema
 
 trait TestSuite extends FunSuite with BeforeAndAfterAll with BeforeAndAfter {
 
   var session: Session = _
-  val schema: ActiveModelSchema
+  val schema: MultitenancyActiveModelSchema
 
   override def beforeAll {
     ActiveModelSessionFactory.concreteFactory = schema.sessionFactory

@@ -11,9 +11,10 @@ case class MySql(conf: Config) extends ActiveModelDatabaseAdapter(conf, "com.mys
   val adapter = new MySQLAdapter
 }
 
-//case class MariaDB(conf: Config) extends ActiveModelDatabaseAdapter(conf, "org.mariadb.jdbc.Driver") {
-//  val adapter = new MySQLInnoDBAdapter
-//}
+case class MariaDB(conf: Config) extends ActiveModelDatabaseAdapter(conf, "org.mariadb.jdbc.Driver") {
+  val adapter = new MySQLAdapter
+}
+
 //
 //case class DB2(conf: Config) extends ActiveModelDatabaseAdapter(conf, "com.ibm.db2.jcc.DB2Driver") {
 //  val adapter = new DB2Adapter

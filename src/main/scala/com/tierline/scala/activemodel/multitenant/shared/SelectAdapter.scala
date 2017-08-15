@@ -6,6 +6,7 @@ import org.squeryl.dsl.ast.{OrderByExpression, QueryExpressionElements}
 import org.squeryl.internals.{DatabaseAdapter, StatementWriter}
 
 import scala.collection.mutable.ListBuffer
+import org.squeryl.PrimitiveTypeMode._
 
 trait SelectAdapter extends DatabaseAdapter {
   self: SharedDatabaseAdapter =>
@@ -77,6 +78,11 @@ trait SelectAdapter extends DatabaseAdapter {
         sw.writeIndented {
           qen.whereClause.get.write(sw)
         }
+        sw.pushPendingNextLine
+      } else {
+        sw.write("Where")
+        sw.nextLine
+        sw.write(s" (${tableNames(0)}.$tenantIdColumnName = ?)")
         sw.pushPendingNextLine
       }
 
